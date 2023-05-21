@@ -1,0 +1,37 @@
+{
+  "name": "@maxmilton/html-parser",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "An efficient, compact HTML5 parser with blistering speed.",
+  "repository": "maxmilton/html-parser",
+  "author": "Max Milton <max@happyhackers.xyz>",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --sourcemap=external",
+    "lint": "bun run lint:js && bun run lint:ts",
+    "lint:js": "eslint --ignore-path .gitignore --ext .ts,.js,.mjs,.cjs .",
+    "lint:ts": "tsc --noEmit",
+    "prebuild": "rm -rf dist",
+    "pretest": "mkdir -p temp",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "5.59.6",
+    "@typescript-eslint/parser": "5.59.6",
+    "bun-types": "0.6.2",
+    "eslint": "8.41.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-unicorn": "47.0.0",
+    "nanospy": "0.5.0",
+    "prettier": "2.8.8",
+    "typescript": "5.0.4"
+  }
+}
