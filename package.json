@@ -20,10 +20,10 @@
     "test": "bun test"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.59.6",
-    "@typescript-eslint/parser": "5.59.6",
-    "bun-types": "0.6.2",
-    "eslint": "8.41.0",
+    "@typescript-eslint/eslint-plugin": "5.59.8",
+    "@typescript-eslint/parser": "5.59.8",
+    "bun-types": "0.6.6",
+    "eslint": "8.42.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-prettier": "8.8.0",
@@ -32,6 +32,6 @@
     "eslint-plugin-unicorn": "47.0.0",
     "nanospy": "0.5.0",
     "prettier": "2.8.8",
-    "typescript": "5.0.4"
+    "typescript": "5.1.3"
   }
 }
