@@ -2,6 +2,7 @@ const OFF = 0;
 const WARN = 1;
 const ERROR = 2;
 
+/** @type {import('eslint/lib/shared/types').ConfigData & { parserOptions: import('@typescript-eslint/types').ParserOptions }} */
 module.exports = {
   root: true,
   reportUnusedDisableDirectives: true,
