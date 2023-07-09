@@ -15,6 +15,7 @@
     "lint": "bun run lint:js && bun run lint:ts",
     "lint:js": "eslint --ignore-path .gitignore --ext .ts,.js,.mjs,.cjs .",
     "lint:ts": "tsc --noEmit",
+    "postbuild": "tsc --project ./tsconfig.d.json",
     "prebuild": "rm -rf dist",
     "pretest": "mkdir -p temp",
     "test": "bun test"
@@ -28,9 +29,9 @@
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-prettier": "5.0.0-alpha.2",
     "eslint-plugin-unicorn": "47.0.0",
-    "prettier": "2.8.8",
+    "prettier": "3.0.0",
     "typescript": "5.1.6"
   }
 }
