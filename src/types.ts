@@ -1,7 +1,3 @@
-// export enum SyntaxKind {
-//   Text = 'Text',
-//   Tag = 'Tag',
-// }
 export const enum SyntaxKind {
   Text,
   Tag,

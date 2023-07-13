@@ -21,7 +21,6 @@ function visit(
 }
 
 export function walk(ast: Node[], options: WalkOptions): void {
-  // eslint-disable-next-line unicorn/no-for-loop
   for (let i = 0; i < ast.length; i++) {
     visit(ast[i], undefined, i, options);
   }

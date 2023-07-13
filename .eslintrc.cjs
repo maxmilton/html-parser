@@ -31,6 +31,7 @@ module.exports = {
     'prettier/prettier': WARN,
     'unicorn/filename-case': OFF,
     'unicorn/no-abusive-eslint-disable': WARN,
+    'unicorn/no-for-loop': OFF, // used in performance critical loops
     'unicorn/no-null': OFF,
     'unicorn/prefer-at': OFF, // browser compatibility issues
     'unicorn/prefer-code-point': OFF, // worse performance
