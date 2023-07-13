@@ -61,7 +61,7 @@ function attr(name: Text, val?: AttributeValue): Attribute {
 function value(input: string, quote: undefined | "'" | '"', start = index): AttributeValue {
   return {
     start,
-    end: (index = start + (quote === void 0 ? 0 : 2) + input.length),
+    end: (index = start + (quote === undefined ? 0 : 2) + input.length),
     value: input,
     quote,
   };
@@ -97,12 +97,12 @@ const scenes: Array<{
         text('<div a1 b2=c3 d4 = e5 f6=\'g7\' h8="i9" />', 0),
         [
           attr(text('a1', 5)),
-          attr(text('b2', index + 1), value('c3', void 0, index + 1)),
-          attr(text('d4', index + 1), value('e5', void 0, index + 3)),
+          attr(text('b2', index + 1), value('c3', undefined, index + 1)),
+          attr(text('d4', index + 1), value('e5', undefined, index + 3)),
           attr(text('f6', index + 1), value('g7', "'", index + 1)),
           attr(text('h8', index + 1), value('i9', '"', index + 1)),
         ],
-        void 0,
+        undefined,
         null,
         0,
       ),
@@ -159,12 +159,12 @@ const scenes: Array<{
             'img',
             text('<img src="/src/index.ts">', 52),
             [attr(text('src', 57), value('/src/index.ts', '"', 61))],
-            void 0,
+            undefined,
             null,
             52,
           ),
           text('\n  ', 77),
-          tag('<input />', 'input', text('<input />', 80), [], void 0, null, 80),
+          tag('<input />', 'input', text('<input />', 80), [], undefined, null, 80),
           text('\n  ', 89),
           tag(
             `<div id="2">
@@ -234,7 +234,7 @@ const scenes: Array<{
         '!doctype',
         text('<!doctype html>', 0),
         [attr(text('html', 10))],
-        void 0,
+        undefined,
         null,
         0,
       ),
@@ -367,7 +367,7 @@ describe('parse options', () => {
         attr(text('diff', index + 1), value('2', '"', index + 1)),
         attr(text('same', index + 1), value('3', '"', index + 1)),
       ],
-      void 0,
+      undefined,
       null,
       0,
     );

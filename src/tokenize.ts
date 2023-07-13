@@ -193,7 +193,7 @@ export function tokenize(input: string): Token[] {
       if (index - sectionStart === doctype.length) {
         emitToken(TokenKind.OpenTag);
       } else {
-        emitToken(TokenKind.OpenTag, void 0, sectionStart + 1);
+        emitToken(TokenKind.OpenTag, undefined, sectionStart + 1);
         emitToken(TokenKind.Literal);
       }
       break;
@@ -201,7 +201,7 @@ export function tokenize(input: string): Token[] {
       if (index - sectionStart === 2) {
         emitToken(TokenKind.OpenTag);
       } else {
-        emitToken(TokenKind.OpenTag, void 0, sectionStart + 1);
+        emitToken(TokenKind.OpenTag, undefined, sectionStart + 1);
         emitToken(TokenKind.Literal);
       }
       break;
@@ -322,7 +322,7 @@ function parseAfterOpenTag() {
   } else if (char === Chars.Eq) {
     // <div ...=...
     emitToken(TokenKind.Whitespace);
-    emitToken(TokenKind.AttrValueEq, void 0, index + 1);
+    emitToken(TokenKind.AttrValueEq, undefined, index + 1);
   } else if (char === Chars.Sq) {
     // <div ...'...
     emitToken(TokenKind.Whitespace, State.InValueSq);
@@ -404,7 +404,7 @@ function parseOpeningDoctype() {
     }
   } else if (char === Chars.Gt) {
     // <!DOCT>
-    emitToken(TokenKind.OpenTag, void 0, sectionStart + 1);
+    emitToken(TokenKind.OpenTag, undefined, sectionStart + 1);
     emitToken(TokenKind.Literal);
     emitToken(TokenKind.OpenTagEnd);
   } else if (doctype.lower[offset] !== char && doctype.upper[offset] !== char) {
@@ -445,7 +445,7 @@ function parseClosingNormalComment() {
       emitToken(TokenKind.OpenTagEnd);
     } else if (char === Chars.Cl) {
       // <!-- xxx ---
-      emitToken(TokenKind.Literal, void 0, sectionStart + 1);
+      emitToken(TokenKind.Literal, undefined, sectionStart + 1);
     } else {
       // <!-- xxx --x
       state = State.InNormalComment;

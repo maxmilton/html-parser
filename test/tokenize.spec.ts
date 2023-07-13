@@ -37,12 +37,12 @@ const cases: Case[] = [
   {
     name: 'Literal end with <',
     input: 'hello<',
-    tokens: [token('hello', void 0, 0), token('<')],
+    tokens: [token('hello', undefined, 0), token('<')],
   },
   {
     name: 'Literal unexpected <',
     input: 'hello< world',
-    tokens: [token('hello', void 0, 0), token('< world')],
+    tokens: [token('hello', undefined, 0), token('< world')],
   },
   {
     name: 'OpenTag EOF',
@@ -116,7 +116,7 @@ const cases: Case[] = [
       token('"st"', TokenKind.AttrValueDq),
       token('u', TokenKind.AttrValueNq),
       token('', TokenKind.OpenTagEnd),
-      token('M', void 0, tokenIndex + 1),
+      token('M', undefined, tokenIndex + 1),
       token('div', TokenKind.CloseTag, tokenIndex + 2),
     ],
   },
