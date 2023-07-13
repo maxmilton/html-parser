@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint @typescript-eslint/no-unsafe-enum-comparison: "warn" */
 /* eslint unicorn/prefer-switch: "warn" */
+
+// FIXME: Use macro to generate code at compile time once const enum inlining is supported in bun
+// import { makeCodePoints } from './macros' assert { type: 'macro' };
 
 const enum State {
   Literal,
@@ -49,6 +53,7 @@ let inScript: boolean;
 let inStyle: boolean;
 let offset: number;
 
+// FIXME: Use macro to generate code at compile time once const enum inlining is supported in bun
 function makeCodePoints(input: string) {
   return {
     lower: input
@@ -94,7 +99,6 @@ function isWhiteSpace() {
   return (
     char === Chars.S ||
     char === Chars.N ||
-    char === Chars.T ||
     char === Chars.T ||
     char === Chars.R ||
     char === Chars.F
