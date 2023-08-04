@@ -67,11 +67,11 @@ function value(input: string, quote: undefined | "'" | '"', start = index): Attr
   };
 }
 
-const scenes: Array<{
+const scenes: {
   name: string;
   input: string;
   nodes: Node[];
-}> = [
+}[] = [
   {
     name: 'text',
     input: 'hello world',

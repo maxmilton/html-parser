@@ -37,7 +37,7 @@ export interface Tag extends BaseNode {
   // value is the attribute self.
   attributeMap: Record<string, Attribute> | undefined;
   body:
-    | Array<Tag | Text> // with close tag
+    | (Tag | Text)[] // with close tag
     | undefined // self closed
     | null; // EOF before open tag end
   // original close tag, </DIV >

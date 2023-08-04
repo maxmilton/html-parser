@@ -126,7 +126,7 @@ function createAttributeValue(): AttributeValue {
   };
 }
 
-function appendLiteral(_node: Text | AttributeValue = node as Text) {
+function appendLiteral(_node: Text | AttributeValue = node!) {
   // eslint-disable-next-line no-param-reassign
   _node.value += token.value;
   // eslint-disable-next-line no-param-reassign
