@@ -24,8 +24,8 @@
     "test": "bun test --coverage"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "6.10.0",
-    "@typescript-eslint/parser": "6.10.0",
+    "@typescript-eslint/eslint-plugin": "6.13.1",
+    "@typescript-eslint/parser": "6.13.1",
     "bun-types": "1.0.15",
     "eslint": "8.55.0",
     "eslint-config-airbnb-base": "15.0.0",
