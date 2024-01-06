@@ -18,7 +18,7 @@
     "lint": "bun run lint:js && bun run lint:ts",
     "lint:js": "eslint --ignore-path .gitignore --ext .ts,.js,.mjs,.cjs .",
     "lint:ts": "tsc --noEmit",
-    "postbuild": "tsc --project ./tsconfig.d.json",
+    "postbuild": "dts-buddy dist/index.d.ts -m '@maxmilton/html-parser':src/index.ts --include src",
     "prebuild": "rm -rf dist",
     "pretest": "mkdir -p temp",
     "test": "bun test --coverage"
