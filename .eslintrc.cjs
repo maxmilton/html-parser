@@ -1,3 +1,5 @@
+'use strict'; // eslint-disable-line
+
 const OFF = 0;
 const WARN = 1;
 const ERROR = 2;
@@ -50,4 +52,12 @@ module.exports = {
     'unicorn/prefer-spread': OFF,
     'unicorn/switch-case-braces': [ERROR, 'avoid'],
   },
+  overrides: [
+    {
+      files: ['*.spec.ts', '*.test.ts', 'build.ts', '*.config.ts', '*.d.ts'],
+      rules: {
+        'import/no-extraneous-dependencies': OFF,
+      },
+    },
+  ],
 };
