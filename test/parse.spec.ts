@@ -355,7 +355,7 @@ describe('parse cases', () => {
 
 describe('parse options', () => {
   it('should setAttributeMap', () => {
-    const ast = parse(`<div same="1" diff="2" same="3" />`, {
+    const ast = parse('<div same="1" diff="2" same="3" />', {
       setAttributeMap: true,
     });
     const div = tag(

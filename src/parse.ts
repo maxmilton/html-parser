@@ -121,8 +121,8 @@ function createAttributeValue(): AttributeValue {
       token.type === TokenKind.AttrValueNq
         ? undefined
         : token.type === TokenKind.AttrValueSq
-        ? "'"
-        : '"',
+          ? "'"
+          : '"',
   };
 }
 
@@ -215,58 +215,59 @@ function parseOpenTag() {
         tag.body = undefined;
       }
       break;
-    } else
-      switch (state) {
-        case OpenTagState.BeforeAttr:
-          if (token.type !== TokenKind.Whitespace) {
+    }
+
+    switch (state) {
+      case OpenTagState.BeforeAttr:
+        if (token.type !== TokenKind.Whitespace) {
+          attr = createAttribute();
+          state = OpenTagState.InName;
+          tag.attributes.push(attr);
+        }
+        break;
+
+      case OpenTagState.InName:
+        if (token.type === TokenKind.Whitespace) {
+          state = OpenTagState.AfterName;
+        } else if (token.type === TokenKind.AttrValueEq) {
+          state = OpenTagState.AfterEqual;
+        } else {
+          appendLiteral(attr!.name);
+        }
+        break;
+
+      case OpenTagState.AfterName:
+        if (token.type !== TokenKind.Whitespace) {
+          if (token.type === TokenKind.AttrValueEq) {
+            state = OpenTagState.AfterEqual;
+          } else {
             attr = createAttribute();
             state = OpenTagState.InName;
             tag.attributes.push(attr);
           }
-          break;
+        }
+        break;
 
-        case OpenTagState.InName:
-          if (token.type === TokenKind.Whitespace) {
-            state = OpenTagState.AfterName;
-          } else if (token.type === TokenKind.AttrValueEq) {
-            state = OpenTagState.AfterEqual;
+      case OpenTagState.AfterEqual:
+        if (token.type !== TokenKind.Whitespace) {
+          attr!.value = createAttributeValue();
+          if (token.type === TokenKind.AttrValueNq) {
+            state = OpenTagState.InValue;
           } else {
-            appendLiteral(attr!.name);
-          }
-          break;
-
-        case OpenTagState.AfterName:
-          if (token.type !== TokenKind.Whitespace) {
-            if (token.type === TokenKind.AttrValueEq) {
-              state = OpenTagState.AfterEqual;
-            } else {
-              attr = createAttribute();
-              state = OpenTagState.InName;
-              tag.attributes.push(attr);
-            }
-          }
-          break;
-
-        case OpenTagState.AfterEqual:
-          if (token.type !== TokenKind.Whitespace) {
-            attr!.value = createAttributeValue();
-            if (token.type === TokenKind.AttrValueNq) {
-              state = OpenTagState.InValue;
-            } else {
-              attr!.end = attr!.value.end;
-              state = OpenTagState.BeforeAttr;
-            }
-          }
-          break;
-
-        default:
-          if (token.type === TokenKind.Whitespace) {
-            attr!.end = attr!.value!.end;
+            attr!.end = attr!.value.end;
             state = OpenTagState.BeforeAttr;
-          } else {
-            appendLiteral(attr!.value);
           }
-      }
+        }
+        break;
+
+      default:
+        if (token.type === TokenKind.Whitespace) {
+          attr!.end = attr!.value!.end;
+          state = OpenTagState.BeforeAttr;
+        } else {
+          appendLiteral(attr!.value);
+        }
+    }
   }
 }
 

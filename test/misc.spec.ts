@@ -16,6 +16,7 @@ async function run(url: string) {
   try {
     const response = await fetch(url);
     const data = await response.text();
+    // biome-ignore lint/suspicious/noConsoleLog: test feedback
     console.log('[FETCH:OK]: %s', url);
     await Bun.write(`temp/${id}.html`, data);
     console.time(`parse:${url}`);
