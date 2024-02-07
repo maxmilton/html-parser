@@ -1,3 +1,5 @@
+// https://github.com/acrazing/html5parser/issues/7
+
 import { describe, expect, it } from 'bun:test';
 import { parse } from '../src/parse';
 import { tag, text } from './parse.spec';

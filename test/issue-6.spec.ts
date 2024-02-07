@@ -1,3 +1,5 @@
+// https://github.com/acrazing/html5parser/issues/6
+
 import { describe, expect, it } from 'bun:test';
 import { parse } from '../src/parse';
 import { TokenKind, tokenize } from '../src/tokenize';
