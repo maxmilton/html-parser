@@ -47,8 +47,7 @@ function init(input?: string, options?: ParseOptions) {
   index = 0;
   tagChain = undefined;
   nodes = [];
-  // token = undefined as any;
-  // @ts-expect-error - FIXME:!
+  // @ts-expect-error - clear token
   token = undefined;
   node = undefined;
   lines = undefined;
