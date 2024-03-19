@@ -1,5 +1,3 @@
-'use strict'; // eslint-disable-line
-
 const OFF = 0;
 const WARN = 1;
 const ERROR = 2;
@@ -25,6 +23,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': ERROR,
     '@typescript-eslint/no-confusing-void-expression': WARN,
     '@typescript-eslint/no-non-null-assertion': WARN,
+    '@typescript-eslint/restrict-template-expressions': WARN,
     'import/prefer-default-export': OFF,
     'no-restricted-syntax': OFF,
     'no-void': OFF,

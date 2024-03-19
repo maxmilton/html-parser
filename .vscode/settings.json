@@ -11,13 +11,13 @@
   "prettier.enable": false, // use biome instead
   "typescript.tsdk": "node_modules/typescript/lib",
 
-  "[json][jsonc][markdown]": {
+  "[css][html][json][jsonc][markdown]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
   "[javascript][typescript]": {
     "editor.codeActionsOnSave": {
       "source.sortImports": "explicit",
-      "source.fixAll": "explicit",
+      "source.fixAll": "explicit"
     },
     "editor.defaultFormatter": "biomejs.biome"
   }
