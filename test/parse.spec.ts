@@ -6,16 +6,17 @@
 import { describe, expect, it } from 'bun:test';
 import { parse } from '../src/parse';
 import {
-  SyntaxKind,
   type Attribute,
   type AttributeValue,
   type Node,
+  SyntaxKind,
   type Tag,
   type Text,
 } from '../src/types';
 
 let index = 0;
 
+// biome-ignore lint/suspicious/noExportsInTest: used in other tests
 export function text(input: string, start = index): Text {
   return {
     type: SyntaxKind.Text,
@@ -25,6 +26,7 @@ export function text(input: string, start = index): Text {
   };
 }
 
+// biome-ignore lint/suspicious/noExportsInTest: used in other tests
 export function tag(
   input: string,
   name: string,

@@ -1,4 +1,4 @@
-import { SyntaxKind, type Node } from './types';
+import { type Node, SyntaxKind } from './types';
 
 export interface WalkOptions {
   enter?(node: Node, parent: Node | undefined, index: number): void;

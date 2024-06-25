@@ -2,7 +2,7 @@
 // but it could do with some improvements.
 
 import { describe, expect, it } from 'bun:test';
-import { TokenKind, tokenize, type Token } from '../src/tokenize';
+import { type Token, TokenKind, tokenize } from '../src/tokenize';
 
 interface Case {
   name: string;
@@ -10,9 +10,10 @@ interface Case {
   tokens: Token[];
 }
 
-// eslint-disable-next-line import/no-mutable-exports
-export let tokenIndex = 0;
+// biome-ignore lint/suspicious/noExportsInTest: used in other tests
+export let tokenIndex = 0; // eslint-disable-line import/no-mutable-exports
 
+// biome-ignore lint/suspicious/noExportsInTest: used in other tests
 export function token(
   value: string,
   type: TokenKind = TokenKind.Literal,

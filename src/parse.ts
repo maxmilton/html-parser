@@ -1,10 +1,10 @@
 import { noNestedTags, selfCloseTags } from './config';
-import { TokenKind, tokenize, type Token } from './tokenize';
+import { type Token, TokenKind, tokenize } from './tokenize';
 import {
-  SyntaxKind,
   type Attribute,
   type AttributeValue,
   type Node,
+  SyntaxKind,
   type Tag,
   type Text,
 } from './types';
