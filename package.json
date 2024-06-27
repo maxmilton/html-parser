@@ -22,7 +22,7 @@
     "test": "bun test --coverage"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.2",
+    "@biomejs/biome": "1.8.3",
     "@eslint/compat": "1.1.0",
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.5.0",
