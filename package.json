@@ -1,12 +1,12 @@
 {
   "name": "@maxmilton/html-parser",
   "version": "0.0.7",
-  "type": "module",
   "description": "An efficient, compact HTML5 parser with blistering speed.",
   "repository": "maxmilton/html-parser",
   "author": "Max Milton <max@happyhackers.xyz>",
   "license": "MIT",
   "sideEffects": false,
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": ["dist", "src"],
@@ -22,20 +22,20 @@
     "test": "bun test --coverage"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.2",
+    "@biomejs/biome": "1.8.3",
     "@eslint/compat": "1.1.0",
     "@eslint/eslintrc": "3.1.0",
-    "@eslint/js": "9.5.0",
-    "@types/bun": "1.1.5",
+    "@eslint/js": "9.6.0",
+    "@types/bun": "1.1.6",
     "@types/eslint__eslintrc": "2.1.1",
     "@types/eslint__js": "8.42.3",
     "dts-buddy": "0.5.0",
-    "eslint": "9.5.0",
+    "eslint": "9.6.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "18.0.0",
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-unicorn": "54.0.0",
-    "typescript": "5.5.2",
-    "typescript-eslint": "7.14.1"
+    "typescript": "5.5.3",
+    "typescript-eslint": "7.15.0"
   }
 }
