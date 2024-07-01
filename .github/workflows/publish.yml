@@ -34,5 +34,6 @@ jobs:
           fi
           echo "NPM_TAG=$NPM_TAG" >> $GITHUB_ENV
       - run: npm publish --provenance --access public --tag ${{ env.NPM_TAG }}
+        shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
