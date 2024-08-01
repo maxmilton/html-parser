@@ -27,7 +27,7 @@
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.6.0",
     "@types/bun": "1.1.6",
-    "@types/eslint__eslintrc": "2.1.1",
+    "@types/eslint__eslintrc": "2.1.2",
     "@types/eslint__js": "8.42.3",
     "dts-buddy": "0.5.1",
     "eslint": "9.6.0",
