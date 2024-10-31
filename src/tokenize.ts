@@ -96,13 +96,16 @@ const enum Chars {
 }
 
 function isWhiteSpace() {
-  return (
-    char === Chars.S ||
-    char === Chars.N ||
-    char === Chars.T ||
-    char === Chars.R ||
-    char === Chars.F
-  );
+  switch (char) {
+    case Chars.S:
+    case Chars.N:
+    case Chars.T:
+    case Chars.R:
+    case Chars.F:
+      return true;
+    default:
+      return false;
+  }
 }
 
 function init(input: string) {
@@ -500,8 +503,7 @@ function parseClosingTag() {
 
 function unexpected() {
   throw new SyntaxError(
-    `Unexpected token "${buffer.charAt(
-      index,
-    )}" at ${index} when parse ${state}`,
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    `Unexpected token "${buffer.charAt(index)}" at ${index} when parse ${state}`,
   );
 }
