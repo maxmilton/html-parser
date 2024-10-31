@@ -11,7 +11,7 @@ interface Case {
 }
 
 // biome-ignore lint/suspicious/noExportsInTest: used in other tests
-export let tokenIndex = 0; // eslint-disable-line import/no-mutable-exports
+export let tokenIndex = 0;
 
 // biome-ignore lint/suspicious/noExportsInTest: used in other tests
 export function token(

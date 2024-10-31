@@ -138,6 +138,7 @@ function unexpected() {
   }
   const [line, column] = getPosition(lines, token.start);
   throw new Error(
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     `Unexpected token "${token.value}(${token.type})" at [${line},${column}]${
       tagChain ? ` when parsing tag: ${JSON.stringify(tagChain.tag.name)}.` : ''
     }`,
@@ -313,14 +314,18 @@ export function parse(input: string, options?: ParseOptions): Node[] {
           pushNode(node);
         }
         break;
-      case TokenKind.OpenTag:
+      // eslint-disable-next-line unicorn/switch-case-braces
+      case TokenKind.OpenTag: {
         node = undefined;
         parseOpenTag();
         break;
-      case TokenKind.CloseTag:
+      }
+      // eslint-disable-next-line unicorn/switch-case-braces
+      case TokenKind.CloseTag: {
         node = undefined;
         parseCloseTag();
         break;
+      }
       default:
         unexpected();
         break;
