@@ -24,7 +24,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@eslint/js": "9.13.0",
-    "@maxmilton/eslint-config": "0.0.4",
+    "@maxmilton/eslint-config": "0.0.5",
     "@types/bun": "1.1.12",
     "dts-buddy": "0.5.3",
     "eslint": "9.13.0",
