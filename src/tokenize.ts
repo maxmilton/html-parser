@@ -2,8 +2,7 @@
 /* eslint @typescript-eslint/no-unsafe-enum-comparison: "warn" */
 /* eslint unicorn/prefer-switch: "warn" */
 
-// FIXME: Use macro to generate code at compile time once const enum inlining is supported in bun
-// import { makeCodePoints } from './macros' assert { type: 'macro' };
+import { makeCodePoints } from './macros' assert { type: 'macro' };
 
 const enum State {
   Literal,
@@ -52,21 +51,6 @@ let char: number;
 let inScript: boolean;
 let inStyle: boolean;
 let offset: number;
-
-// FIXME: Use macro to generate code at compile time once const enum inlining is supported in bun
-function makeCodePoints(input: string) {
-  return {
-    lower: input
-      .toLowerCase()
-      .split('')
-      .map((c) => c.charCodeAt(0)),
-    upper: input
-      .toUpperCase()
-      .split('')
-      .map((c) => c.charCodeAt(0)),
-    length: input.length,
-  };
-}
 
 const doctype = makeCodePoints('!doctype');
 const style = makeCodePoints('style');
