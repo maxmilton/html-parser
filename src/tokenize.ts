@@ -2,7 +2,8 @@
 /* eslint @typescript-eslint/no-unsafe-enum-comparison: "warn" */
 /* eslint unicorn/prefer-switch: "warn" */
 
-import { makeCodePoints } from './macros' assert { type: 'macro' };
+// TODO: Use macro to generate code points once bun can run macros in node_modules
+// import { makeCodePoints } from './macros' assert { type: 'macro' };
 
 const enum State {
   Literal,
@@ -51,6 +52,21 @@ let char: number;
 let inScript: boolean;
 let inStyle: boolean;
 let offset: number;
+
+// TODO: Use macro to generate code points once bun can run macros in node_modules
+function makeCodePoints(input: string) {
+  return {
+    lower: input
+      .toLowerCase()
+      .split('')
+      .map((c) => c.charCodeAt(0)),
+    upper: input
+      .toUpperCase()
+      .split('')
+      .map((c) => c.charCodeAt(0)),
+    length: input.length,
+  };
+}
 
 const doctype = makeCodePoints('!doctype');
 const style = makeCodePoints('style');
