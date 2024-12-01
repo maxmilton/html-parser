@@ -11,7 +11,7 @@
   "types": "dist/index.d.ts",
   "files": ["dist", "src"],
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --minify --sourcemap=external",
+    "build": "bun build src/index.ts --outdir dist --minify --sourcemap=linked",
     "lint": "bun run lint:fmt && bun run lint:js && bun run lint:ts",
     "lint:fmt": "biome check",
     "lint:js": "eslint",
