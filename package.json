@@ -29,7 +29,7 @@
     "dts-buddy": "0.5.4",
     "eslint": "9.18.0",
     "eslint-plugin-unicorn": "56.0.1",
-    "typescript": "5.7.2",
+    "typescript": "5.7.3",
     "typescript-eslint": "8.20.0"
   }
 }
