@@ -1,6 +1,7 @@
 .github/
 .vscode/
-**.bak
+*.bak
+**/*.bak
 coverage/
 temp/
 test/
