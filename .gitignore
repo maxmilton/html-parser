@@ -1,6 +1,7 @@
 *-lock.json*
 *-lock.yaml
 *.lock
+!bun.lock
 *.log
 /coverage/
 /dist/
