@@ -25,7 +25,7 @@
     "@biomejs/biome": "1.9.4",
     "@eslint/js": "9.20.0",
     "@maxmilton/eslint-config": "0.0.8",
-    "@types/bun": "1.2.2",
+    "@types/bun": "1.2.4",
     "dts-buddy": "0.5.4",
     "eslint": "9.20.0",
     "eslint-plugin-unicorn": "56.0.1",
