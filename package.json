@@ -23,13 +23,13 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@eslint/js": "9.20.0",
-    "@maxmilton/eslint-config": "0.0.8",
-    "@types/bun": "1.2.2",
-    "dts-buddy": "0.5.4",
-    "eslint": "9.20.0",
-    "eslint-plugin-unicorn": "56.0.1",
-    "typescript": "5.7.3",
-    "typescript-eslint": "8.23.0"
+    "@eslint/js": "9.21.0",
+    "@maxmilton/eslint-config": "0.0.9",
+    "@types/bun": "1.2.4",
+    "dts-buddy": "0.5.5",
+    "eslint": "9.21.0",
+    "eslint-plugin-unicorn": "57.0.0",
+    "typescript": "5.8.2",
+    "typescript-eslint": "8.25.0"
   }
 }
