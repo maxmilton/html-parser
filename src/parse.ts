@@ -133,9 +133,7 @@ function appendLiteral(_node: Text | AttributeValue = node!) {
 }
 
 function unexpected() {
-  if (lines === undefined) {
-    lines = getLineRanges(buffer);
-  }
+  lines ??= getLineRanges(buffer);
   const [line, column] = getPosition(lines, token.start);
   throw new Error(
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
