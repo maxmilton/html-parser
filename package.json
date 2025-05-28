@@ -11,15 +11,12 @@
   "types": "dist/index.d.ts",
   "files": ["dist", "src"],
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --minify --sourcemap=linked",
-    "lint": "bun run lint:fmt && bun run lint:js && bun run lint:ts",
+    "build": "bun build.ts",
+    "lint": "bun lint:fmt && bun lint:js && bun lint:ts",
     "lint:fmt": "biome check",
     "lint:js": "eslint",
     "lint:ts": "tsc --noEmit",
-    "postbuild": "dts-buddy dist/index.d.ts -m '@maxmilton/html-parser':src/index.ts --include src",
-    "prebuild": "rm -rf dist",
-    "pretest": "mkdir -p temp",
-    "test": "bun test --coverage"
+    "test": "bun test"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.0-beta.5",
