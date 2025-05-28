@@ -32,4 +32,4 @@ MIT license. See [LICENSE](https://github.com/maxmilton/html-parser/blob/master/
 
 ---
 
-© 2024 [Max Milton](https://maxmilton.com)
+© 2025 [Max Milton](https://maxmilton.com)
