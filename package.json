@@ -22,14 +22,14 @@
     "test": "bun test --coverage"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@eslint/js": "9.23.0",
-    "@maxmilton/eslint-config": "0.0.9",
-    "@types/bun": "1.2.8",
-    "dts-buddy": "0.5.5",
-    "eslint": "9.23.0",
-    "eslint-plugin-unicorn": "58.0.0",
-    "typescript": "5.8.2",
-    "typescript-eslint": "8.29.0"
+    "@biomejs/biome": "2.0.0-beta.5",
+    "@eslint/js": "9.27.0",
+    "@maxmilton/eslint-config": "0.1.0",
+    "@types/bun": "1.2.14",
+    "dts-buddy": "0.6.2",
+    "eslint": "9.27.0",
+    "eslint-plugin-unicorn": "59.0.1",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.33.0"
   }
 }
