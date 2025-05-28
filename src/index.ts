@@ -1,12 +1,12 @@
-export { parse, type ParseOptions } from './parse';
-export { TokenKind, tokenize, type Token } from './tokenize';
+export { type ParseOptions, parse } from './parse';
+export { type Token, TokenKind, tokenize } from './tokenize';
 export {
-  SyntaxKind,
   type Attribute,
   type AttributeValue,
   type BaseNode,
   type Node,
+  SyntaxKind,
   type Tag,
   type Text,
 } from './types';
-export { walk, type WalkOptions } from './walk';
+export { type WalkOptions, walk } from './walk';
