@@ -2,7 +2,7 @@
 // but it could do with some improvements.
 
 import { describe, expect, it } from 'bun:test';
-import { type Token, TokenKind, tokenize } from '../src/tokenize';
+import { type Token, TokenKind, tokenize } from '../src/tokenize.ts';
 
 interface Case {
   name: string;

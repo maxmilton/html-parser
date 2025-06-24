@@ -9,6 +9,9 @@
     "skipLibCheck": true,
     "allowJs": true, // type=module
 
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+
     "strict": true,
     "allowUnreachableCode": false,
     "exactOptionalPropertyTypes": true,

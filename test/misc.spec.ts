@@ -8,7 +8,7 @@
 // detecting thrown errors. Add assertions.
 
 import { describe, it } from 'bun:test';
-import { parse } from '../src/parse';
+import { parse } from '../src/parse.ts';
 
 async function run(url: string) {
   const id = url.replaceAll(/\W+/g, '_').replaceAll(/^_+|_+$/g, '');

@@ -4,7 +4,7 @@
 // but it could do with some improvements.
 
 import { describe, expect, it } from 'bun:test';
-import { parse } from '../src/parse';
+import { parse } from '../src/parse.ts';
 import {
   type Attribute,
   type AttributeValue,
@@ -12,7 +12,7 @@ import {
   SyntaxKind,
   type Tag,
   type Text,
-} from '../src/types';
+} from '../src/types.ts';
 
 let index = 0;
 

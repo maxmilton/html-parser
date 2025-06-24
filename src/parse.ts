@@ -1,5 +1,5 @@
-import { noNestedTags, selfCloseTags } from './config';
-import { type Token, TokenKind, tokenize } from './tokenize';
+import { noNestedTags, selfCloseTags } from './config.ts';
+import { type Token, TokenKind, tokenize } from './tokenize.ts';
 import {
   type Attribute,
   type AttributeValue,
@@ -7,9 +7,9 @@ import {
   SyntaxKind,
   type Tag,
   type Text,
-} from './types';
-import { getLineRanges, getPosition } from './utils';
-import { walk } from './walk';
+} from './types.ts';
+import { getLineRanges, getPosition } from './utils.ts';
+import { walk } from './walk.ts';
 
 interface Context {
   parent: Context | undefined;
