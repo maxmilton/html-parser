@@ -43,6 +43,6 @@ export default ts.config(
     },
   },
   {
-    ignores: ['*.bak', 'coverage/**', 'dist/**'],
+    ignores: ['*.bak', 'coverage', 'dist'],
   },
 );

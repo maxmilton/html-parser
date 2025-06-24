@@ -10,8 +10,7 @@
     "rules": {
       "recommended": true,
       "style": {
-        "noNonNullAssertion": "off",
-        "useTemplate": "off"
+        "noNonNullAssertion": "off"
       },
       "suspicious": {
         "noAssignInExpressions": "off",
@@ -26,15 +25,6 @@
     }
   },
   "overrides": [
-    {
-      "includes": [".vscode/*.json", "package.json", "tsconfig*.json"],
-      "json": {
-        "parser": {
-          "allowComments": true,
-          "allowTrailingCommas": true
-        }
-      }
-    },
     {
       "includes": ["**/*.spec.ts", "**/*.test.ts", "test/**"],
       "formatter": {

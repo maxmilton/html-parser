@@ -14,7 +14,6 @@ const out = await Bun.build({
   sourcemap: 'linked',
 });
 console.timeEnd('build');
-console.log(out.outputs);
 
 console.time('dts');
 await createBundle({
@@ -26,3 +25,5 @@ await createBundle({
   include: ['src'],
 });
 console.timeEnd('dts');
+
+console.debug(out.outputs);
