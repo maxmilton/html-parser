@@ -1,3 +1,5 @@
+export type NumberOr<T extends number> = T | (number & {});
+
 export const enum SyntaxKind {
   Text,
   Tag,

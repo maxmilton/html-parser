@@ -4,6 +4,7 @@
 
 // TODO: Use macro to generate code points once bun can run macros in node_modules
 // import { makeCodePoints } from './macros' assert { type: 'macro' };
+import type { NumberOr } from "./types.ts";
 
 const enum State {
   Literal,
@@ -48,7 +49,7 @@ let bufSize: number;
 let sectionStart: number;
 let index: number;
 let tokens: Token[];
-let char: number;
+let char: NumberOr<Chars>;
 let inScript: boolean;
 let inStyle: boolean;
 let offset: number;
