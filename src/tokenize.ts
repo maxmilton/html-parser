@@ -58,19 +58,19 @@ function makeCodePoints(input: string) {
   return {
     lower: input
       .toLowerCase()
-      .split('')
+      .split("")
       .map((c) => c.charCodeAt(0)),
     upper: input
       .toUpperCase()
-      .split('')
+      .split("")
       .map((c) => c.charCodeAt(0)),
     length: input.length,
   };
 }
 
-const doctype = makeCodePoints('!doctype');
-const style = makeCodePoints('style');
-const script = makeCodePoints('script');
+const doctype = makeCodePoints("!doctype");
+const style = makeCodePoints("style");
+const script = makeCodePoints("script");
 
 const enum Chars {
   S = 32, // ' '
@@ -219,7 +219,7 @@ export function tokenize(input: string): Token[] {
       break;
   }
   const currentTokens = tokens;
-  init('');
+  init("");
   return currentTokens;
 }
 
@@ -229,9 +229,9 @@ function emitToken(kind: TokenKind, newState = state, end = index) {
     value = value.toLowerCase();
   }
   if (kind === TokenKind.OpenTag) {
-    if (value === 'script') {
+    if (value === "script") {
       inScript = true;
-    } else if (value === 'style') {
+    } else if (value === "style") {
       inStyle = true;
     }
   }
@@ -239,12 +239,7 @@ function emitToken(kind: TokenKind, newState = state, end = index) {
     // eslint-disable-next-line no-multi-assign
     inScript = inStyle = false;
   }
-  if (
-    !(
-      (kind === TokenKind.Literal || kind === TokenKind.Whitespace) &&
-      end === sectionStart
-    )
-  ) {
+  if (!((kind === TokenKind.Literal || kind === TokenKind.Whitespace) && end === sectionStart)) {
     // empty literal should be ignored
     tokens.push({ type: kind, start: sectionStart, end, value });
   }
@@ -274,10 +269,7 @@ function parseBeforeOpenTag() {
     }
     return;
   }
-  if (
-    (char >= Chars.La && char <= Chars.Lz) ||
-    (char >= Chars.Ua && char <= Chars.Uz)
-  ) {
+  if ((char >= Chars.La && char <= Chars.Lz) || (char >= Chars.Ua && char <= Chars.Uz)) {
     // <d
     state = State.OpeningTag;
     sectionStart = index;

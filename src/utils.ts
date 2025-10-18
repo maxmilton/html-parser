@@ -1,5 +1,5 @@
 // export function getLineRanges(input: string): number[] {
-//   return input.split('\n').reduce(
+//   return input.split("\n").reduce(
 //     (arr, line) => {
 //       arr.push(line.length + 1 + arr[arr.length - 1]);
 //       return arr;
@@ -10,16 +10,13 @@
 export function getLineRanges(input: string): number[] {
   let sum = 0;
 
-  return input.split('\n').map((line) => {
+  return input.split("\n").map((line) => {
     sum += line.length + 1;
     return sum;
   });
 }
 
-export function getPosition(
-  ranges: number[],
-  offset: number,
-): [number, number] {
+export function getPosition(ranges: number[], offset: number): [number, number] {
   let line = Number.NaN;
   let column = Number.NaN;
 

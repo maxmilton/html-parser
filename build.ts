@@ -1,29 +1,29 @@
 /* eslint-disable no-console */
 
-import { createBundle } from 'dts-buddy';
+import { createBundle } from "dts-buddy";
 
-console.time('prebuild');
+console.time("prebuild");
 await Bun.$`rm -rf dist`;
-console.timeEnd('prebuild');
+console.timeEnd("prebuild");
 
-console.time('build');
+console.time("build");
 const out = await Bun.build({
-  entrypoints: ['src/index.ts'],
-  outdir: 'dist',
+  entrypoints: ["src/index.ts"],
+  outdir: "dist",
   minify: true,
-  sourcemap: 'linked',
+  sourcemap: "linked",
 });
-console.timeEnd('build');
+console.timeEnd("build");
 
-console.time('dts');
+console.time("dts");
 await createBundle({
-  project: 'tsconfig.json',
-  output: 'dist/index.d.ts',
+  project: "tsconfig.json",
+  output: "dist/index.d.ts",
   modules: {
-    '@maxmilton/html-parser': 'src/index.js',
+    "@maxmilton/html-parser": "src/index.js",
   },
-  include: ['src'],
+  include: ["src"],
 });
-console.timeEnd('dts');
+console.timeEnd("dts");
 
 console.debug(out.outputs);

@@ -6,11 +6,11 @@ export function makeCodePoints(input: string): {
   return {
     lower: input
       .toLowerCase()
-      .split('')
+      .split("")
       .map((c) => c.charCodeAt(0)),
     upper: input
       .toUpperCase()
-      .split('')
+      .split("")
       .map((c) => c.charCodeAt(0)),
     length: input.length,
   };
