@@ -1,5 +1,5 @@
-import { noNestedTags, selfCloseTags } from './config.ts';
-import { type Token, TokenKind, tokenize } from './tokenize.ts';
+import { noNestedTags, selfCloseTags } from "./config.ts";
+import { type Token, TokenKind, tokenize } from "./tokenize.ts";
 import {
   type Attribute,
   type AttributeValue,
@@ -7,9 +7,9 @@ import {
   SyntaxKind,
   type Tag,
   type Text,
-} from './types.ts';
-import { getLineRanges, getPosition } from './utils.ts';
-import { walk } from './walk.ts';
+} from "./types.ts";
+import { getLineRanges, getPosition } from "./utils.ts";
+import { walk } from "./walk.ts";
 
 interface Context {
   parent: Context | undefined;
@@ -38,7 +38,7 @@ function init(input?: string, options?: ParseOptions) {
   if (input === undefined) {
     count = 0;
     tokens.length = 0;
-    buffer = '';
+    buffer = "";
   } else {
     tokens = tokenize(input);
     count = tokens.length;
@@ -76,11 +76,7 @@ function pushTagChain(tag: Tag) {
   node = undefined;
 }
 
-function createLiteral(
-  start = token.start,
-  end = token.end,
-  value = token.value,
-): Text {
+function createLiteral(start = token.start, end = token.end, value = token.value): Text {
   return { start, end, value, type: SyntaxKind.Text };
 }
 
@@ -138,7 +134,7 @@ function unexpected() {
   throw new Error(
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     `Unexpected token "${token.value}(${token.type})" at [${line},${column}]${
-      tagChain ? ` when parsing tag: ${JSON.stringify(tagChain.tag.name)}.` : ''
+      tagChain ? ` when parsing tag: ${JSON.stringify(tagChain.tag.name)}.` : ""
     }`,
   );
 }
@@ -169,7 +165,7 @@ function parseOpenTag() {
 
   const tag = createTag();
   pushNode(tag);
-  if (tag.name === '' || tag.name === '!' || tag.name === '!--') {
+  if (tag.name === "" || tag.name === "!" || tag.name === "!--") {
     tag.open.value = `<${tag.open.value}`;
 
     if (index === count) return;
@@ -206,7 +202,7 @@ function parseOpenTag() {
       tag.open.value = buffer.slice(tag.open.start, tag.open.end);
 
       // if (token.value === '' && !selfCloseTags[tag.name]) {
-      if (token.value === '' && !selfCloseTags.has(tag.name)) {
+      if (token.value === "" && !selfCloseTags.has(tag.name)) {
         tag.body = [];
         pushTagChain(tag);
       } else {

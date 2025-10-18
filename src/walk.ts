@@ -1,16 +1,11 @@
-import { type Node, SyntaxKind } from './types.ts';
+import { type Node, SyntaxKind } from "./types.ts";
 
 export interface WalkOptions {
   enter?(node: Node, parent: Node | undefined, index: number): void;
   leave?(node: Node, parent: Node | undefined, index: number): void;
 }
 
-function visit(
-  node: Node,
-  parent: Node | undefined,
-  index: number,
-  options: WalkOptions,
-) {
+function visit(node: Node, parent: Node | undefined, index: number, options: WalkOptions) {
   options.enter?.(node, parent, index);
   if (node.type === SyntaxKind.Tag && Array.isArray(node.body)) {
     for (let i = 0; i < node.body.length; i++) {
