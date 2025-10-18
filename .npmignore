@@ -3,5 +3,5 @@
 *.bak
 **/*.bak
 coverage/
-temp/
+test-cache/
 test/

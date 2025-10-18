@@ -17,11 +17,11 @@ async function run(url: string) {
     const response = await fetch(url);
     const data = await response.text();
     console.log('[FETCH:OK]: %s', url);
-    await Bun.write(`temp/${id}.html`, data);
+    await Bun.write(`test-cache/${id}.html`, data);
     console.time(`parse:${url}`);
     const ast = parse(data);
     console.timeEnd(`parse:${url}`);
-    await Bun.write(`temp/${id}.json`, JSON.stringify(ast, null, 2));
+    await Bun.write(`test-cache/${id}.json`, JSON.stringify(ast, null, 2));
   } catch (error) {
     console.error('[ERR]: %s, %s', id, (error instanceof Error && error.message) || error);
   }
