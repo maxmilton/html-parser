@@ -1,21 +1,18 @@
-import eslint from '@eslint/js';
-import mm from '@maxmilton/eslint-config';
-import unicorn from 'eslint-plugin-unicorn';
-import ts from 'typescript-eslint';
+import js from "@eslint/js";
+import mm from "@maxmilton/eslint-config";
+import { defineConfig } from "eslint/config";
+import unicorn from "eslint-plugin-unicorn";
+import ts from "typescript-eslint";
 
-const OFF = 0;
-const WARN = 1;
-const ERROR = 2;
-
-export default ts.config(
-  eslint.configs.recommended,
-  ...ts.configs.strictTypeChecked,
-  ...ts.configs.stylisticTypeChecked,
+export default defineConfig(
+  js.configs.recommended,
+  ts.configs.strictTypeChecked,
+  ts.configs.stylisticTypeChecked,
   unicorn.configs.recommended,
   mm.configs.recommended,
   {
     linterOptions: {
-      reportUnusedDisableDirectives: ERROR,
+      reportUnusedDisableDirectives: "error",
     },
     languageOptions: {
       parserOptions: {
@@ -24,25 +21,16 @@ export default ts.config(
       },
     },
     rules: {
-      // bad browser support
-      'unicorn/prefer-at': OFF,
-      // prefer to clearly separate Bun and DOM
-      'unicorn/prefer-global-this': OFF,
-
-      /* Performance and byte savings */
-      'no-plusplus': OFF,
-      // not always faster
-      'unicorn/prefer-set-has': WARN,
-      // used in performance critical loops
-      'unicorn/no-for-loop': OFF,
-      // worse performance
-      'unicorn/prefer-code-point': OFF,
-      // string spread is slower than split('')
-      'unicorn/prefer-spread': OFF,
-      'unicorn/switch-case-braces': [ERROR, 'avoid'],
+      "no-plusplus": "off", // clearer code when used mindfully
+      quotes: ["error", "double", { avoidEscape: true }],
+      "unicorn/no-for-loop": "off", // used in performance critical loops
+      "unicorn/prefer-at": "off", // bad browser support
+      "unicorn/prefer-code-point": "off", // worse performance
+      "unicorn/prefer-global-this": "off", // prefer to clearly separate Bun and DOM
+      "unicorn/prefer-set-has": "warn", // not always faster
+      "unicorn/prefer-spread": "off", // string spread slower than split("")
+      "unicorn/switch-case-braces": ["error", "avoid"],
     },
   },
-  {
-    ignores: ['*.bak', 'coverage', 'dist'],
-  },
+  { ignores: ["**/*.bak", "coverage", "dist"] },
 );
