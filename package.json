@@ -20,7 +20,8 @@
     "lint:fmt": "biome check",
     "lint:js": "eslint",
     "lint:ts": "tsc --noEmit",
-    "test": "bun test"
+    "test": "bun test --only-failures",
+    "test:ci": "bun test --coverage --randomize --rerun-each=3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.1",
