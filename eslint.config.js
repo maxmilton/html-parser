@@ -13,6 +13,7 @@ export default defineConfig(
   {
     linterOptions: {
       reportUnusedDisableDirectives: "error",
+      reportUnusedInlineConfigs: "error",
     },
     languageOptions: {
       parserOptions: {
@@ -24,6 +25,7 @@ export default defineConfig(
       "no-plusplus": "off", // clearer code when used mindfully
       quotes: ["error", "double", { avoidEscape: true }],
       "unicorn/no-for-loop": "off", // used in performance critical loops
+      "unicorn/no-top-level-assignment-in-function": "off", // used throughout this implementation
       "unicorn/prefer-at": "off", // bad browser support
       "unicorn/prefer-code-point": "off", // worse performance
       "unicorn/prefer-global-this": "off", // prefer to clearly separate Bun and DOM
@@ -32,5 +34,12 @@ export default defineConfig(
       "unicorn/switch-case-braces": ["error", "avoid"],
     },
   },
-  { ignores: ["**/*.bak", "coverage", "dist"] },
+  {
+    files: ["test/**"],
+    rules: {
+      "unicorn/max-nested-calls": "off",
+      "unicorn/no-top-level-side-effects": "off", // false positives
+    },
+  },
+  { ignores: ["dist"] },
 );

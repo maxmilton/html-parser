@@ -1,7 +1,4 @@
-telemetry = false
-
-[run]
-bun = true
+"$schema" = "https://www.schemastore.org/bunfig.json"
 
 [install]
 auto = "disable"
@@ -9,4 +6,3 @@ auto = "disable"
 [test]
 preload = ["./test/setup.ts"]
 root = "./test"
-coverage = true

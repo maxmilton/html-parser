@@ -1,11 +1,10 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
+  "$schema": "https://www.schemastore.org/tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
     "moduleDetection": "force",
     "moduleResolution": "bundler",
-    "esModuleInterop": false,
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,
@@ -17,12 +16,14 @@
     "allowUnreachableCode": false,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": false, // covered by eslint
+    "noFallthroughCasesInSwitch": false, // covered by linters
     "noImplicitOverride": true,
     "noUncheckedSideEffectImports": true,
-    "noUnusedLocals": false, // covered by eslint
-    "noUnusedParameters": false, // covered by eslint
-    "verbatimModuleSyntax": true
+    "noUnusedLocals": false, // covered by linters
+    "noUnusedParameters": false, // covered by linters
+    "verbatimModuleSyntax": true,
+
+    "types": ["bun"]
   },
   "include": ["*.config.js", "build.ts", "src", "test"]
 }
