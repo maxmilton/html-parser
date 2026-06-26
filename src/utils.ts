@@ -17,8 +17,8 @@ export function getLineRanges(input: string): number[] {
 }
 
 export function getPosition(ranges: number[], offset: number): [number, number] {
-  let line = Number.NaN;
-  let column = Number.NaN;
+  let line = NaN;
+  let column = NaN;
 
   for (let i = 1; i < ranges.length; i++) {
     if (ranges[i] > offset) {

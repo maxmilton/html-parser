@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-break-in-nested-loop */
+
 import { noNestedTags, selfCloseTags } from "./config.ts";
 import { type Token, TokenKind, tokenize } from "./tokenize.ts";
 import {
@@ -160,11 +162,9 @@ const enum OpenTagState {
 function parseOpenTag() {
   let state = OpenTagState.BeforeAttr;
 
-  // let attr: Attribute = undefined as any;
-  let attr: Attribute;
-
   const tag = createTag();
   pushNode(tag);
+  // eslint-disable-next-line unicorn/prefer-includes-over-repeated-comparisons
   if (tag.name === "" || tag.name === "!" || tag.name === "!--") {
     tag.open.value = `<${tag.open.value}`;
 
@@ -192,6 +192,9 @@ function parseOpenTag() {
 
     return;
   }
+
+  // let attr: Attribute = undefined as any;
+  let attr: Attribute;
 
   while (++index < count) {
     token = tokens[index];
@@ -294,7 +297,7 @@ export function parse(input: string, options?: ParseOptions): Node[] {
   init(input, {
     setAttributeMap: false,
     ...options,
-  } as ParseOptions);
+  });
 
   while (index < count) {
     token = tokens[index];

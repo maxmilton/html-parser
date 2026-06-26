@@ -54,6 +54,7 @@ export function tag(
 function attr(name: Text, val?: AttributeValue): Attribute {
   return {
     start: name.start,
+    // eslint-disable-next-line unicorn/prefer-minimal-ternary
     end: (index = val ? val.end : name.end),
     name,
     value: val,
