@@ -22,7 +22,8 @@
   },
   "[javascript]": {
     "editor.codeActionsOnSave": {
-      "source.organizeImports": "never"
+      "source.organizeImports": "never",
+      "source.fixAll.eslint": "never"
     },
     "editor.defaultFormatter": "biomejs.biome"
   },
