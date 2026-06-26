@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable unicorn/no-break-in-nested-loop */
 /* eslint @typescript-eslint/no-unsafe-enum-comparison: "warn" */
 /* eslint unicorn/prefer-switch: "warn" */
 
@@ -50,7 +51,9 @@ let sectionStart: number;
 let index: number;
 let tokens: Token[];
 let char: NumberOr<Chars>;
+// eslint-disable-next-line unicorn/consistent-boolean-name
 let inScript: boolean;
+// eslint-disable-next-line unicorn/consistent-boolean-name
 let inStyle: boolean;
 let offset: number;
 
@@ -96,7 +99,7 @@ const enum Chars {
   Ud = 68, // D
 }
 
-function isWhiteSpace() {
+function isWhitespace() {
   switch (char) {
     case Chars.S:
     case Chars.N:
@@ -298,7 +301,7 @@ function parseBeforeOpenTag() {
 }
 
 function parseOpeningTag() {
-  if (isWhiteSpace()) {
+  if (isWhitespace()) {
     // <div ...
     emitToken(TokenKind.OpenTag, State.AfterOpenTag);
   } else if (char === Chars.Gt) {
@@ -329,7 +332,7 @@ function parseAfterOpenTag() {
   } else if (char === Chars.Dq) {
     // <div ..."...
     emitToken(TokenKind.Whitespace, State.InValueDq);
-  } else if (!isWhiteSpace()) {
+  } else if (!isWhitespace()) {
     // <div ...name...
     emitToken(TokenKind.Whitespace, State.InValueNq);
   }
@@ -347,7 +350,7 @@ function parseInValueNq() {
     // <div xxx=
     emitToken(TokenKind.AttrValueNq);
     emitToken(TokenKind.AttrValueEq, State.AfterOpenTag, index + 1);
-  } else if (isWhiteSpace()) {
+  } else if (isWhitespace()) {
     // <div xxx ...
     emitToken(TokenKind.AttrValueNq, State.AfterOpenTag);
   }
@@ -397,7 +400,7 @@ function parseOpeningDoctype() {
   offset = index - sectionStart;
   if (offset === doctype.length) {
     // <!d, <!d , start: 0, index: 2
-    if (isWhiteSpace()) {
+    if (isWhitespace()) {
       emitToken(TokenKind.OpenTag, State.AfterOpenTag);
     } else {
       unexpected();
@@ -430,6 +433,7 @@ function parseNormalComment() {
 }
 
 function parseShortComment() {
+  // eslint-disable-next-line unicorn/prefer-early-return
   if (char === Chars.Gt) {
     // <! ... >
     emitToken(TokenKind.Literal);
@@ -469,7 +473,7 @@ function parseClosingTag() {
       }
     } else if (char === Chars.Gt) {
       emitToken(TokenKind.CloseTag);
-    } else if (!isWhiteSpace()) {
+    } else if (!isWhitespace()) {
       sectionStart -= 2;
       state = State.Literal;
     }
@@ -484,7 +488,7 @@ function parseClosingTag() {
       }
     } else if (char === Chars.Gt) {
       emitToken(TokenKind.CloseTag);
-    } else if (!isWhiteSpace()) {
+    } else if (!isWhitespace()) {
       sectionStart -= 2;
       state = State.Literal;
     }
