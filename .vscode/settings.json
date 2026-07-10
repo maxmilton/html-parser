@@ -10,9 +10,9 @@
   "editor.tabSize": 2,
   "eslint.enable": true,
   "git.branchProtection": ["master"],
-  "prettier.enable": false, // use biome
   "js/ts.tsdk.path": "node_modules/typescript/lib",
   "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+  "prettier.enable": false, // use biome
 
   "[css]": {
     "editor.defaultFormatter": "biomejs.biome"
@@ -47,8 +47,6 @@
     "editor.defaultFormatter": "biomejs.biome"
   },
   "[yaml]": {
-    // TODO: Use biome once it supports formatting yaml files.
-    // "editor.defaultFormatter": "biomejs.biome"
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+    "editor.defaultFormatter": "biomejs.biome"
   }
 }
