@@ -7,7 +7,7 @@ await Bun.$`rm -rf dist`;
 console.timeEnd("prebuild");
 
 console.time("build");
-const out = await Bun.build({
+await Bun.build({
   entrypoints: ["src/index.ts"],
   outdir: "dist",
   minify: true,
@@ -25,5 +25,3 @@ await createBundle({
   include: ["src"],
 });
 console.timeEnd("dts");
-
-console.debug(out.outputs);
