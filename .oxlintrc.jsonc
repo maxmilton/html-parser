@@ -1,0 +1,55 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": ["./node_modules/@maxmilton/oxlint-config/recommended.json"],
+  "options": {
+    "maxWarnings": 50,
+    "reportUnusedDisableDirectives": "error",
+    "respectEslintDisableDirectives": false,
+    "typeAware": true,
+  },
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error",
+    "pedantic": "warn",
+    "perf": "error",
+    "style": "warn",
+    "restriction": "error",
+    "nursery": "warn",
+  },
+  // https://github.com/oxc-project/javascript-globals/blob/main/src/lib.rs
+  "env": {
+    "builtin": true,
+    "es2025": true,
+    "es2026": true,
+    "node": true,
+    "commonjs": false,
+  },
+  "globals": {
+    "Bun": "readonly",
+  },
+  "rules": {
+    "eslint/no-multi-assign": "off", // used carefully
+    "eslint/no-nested-ternary": "off",
+    "eslint/no-plusplus": "off",
+    "typescript/promise-function-async": "off",
+    "typescript/strict-boolean-expressions": "off",
+    "unicorn/no-nested-ternary": "off",
+    "unicorn/prefer-code-point": "off", // faster
+
+    // TODO: These are buggy. Remove after future oxlint updates.
+    "typescript/prefer-readonly-parameter-types": "off",
+
+    // TODO: Remove these after next @maxmilton/oxlint-config release.
+    "eslint/one-var": "off",
+  },
+  "overrides": [
+    {
+      "files": ["test/**/*.test.ts", "test/**/*.spec.ts"],
+      "plugins": ["vitest"],
+      "rules": {
+        "unicorn/consistent-function-scoping": "off", // tests may define scoped helpers
+        "vitest/consistent-test-filename": ["error", { "pattern": ".*\\.spec\\.ts$" }], // original html5parser convention
+      },
+    },
+  ],
+}
