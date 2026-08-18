@@ -1,40 +1,37 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
-/* eslint-disable unicorn/no-break-in-nested-loop */
-/* eslint @typescript-eslint/no-unsafe-enum-comparison: "warn" */
-/* eslint unicorn/prefer-switch: "warn" */
+// oxlint-disable no-use-before-define
 
 // TODO: Use macro to generate code points once bun can run macros in node_modules
 // import { makeCodePoints } from './macros' assert { type: 'macro' };
 import type { NumberOr } from "./types.ts";
 
 const enum State {
-  Literal,
-  BeforeOpenTag,
-  OpeningTag,
-  AfterOpenTag,
-  InValueNq,
-  InValueSq,
-  InValueDq,
-  ClosingOpenTag,
-  OpeningSpecial,
-  OpeningDoctype,
-  OpeningNormalComment,
-  InNormalComment,
-  InShortComment,
-  ClosingNormalComment,
-  ClosingTag,
+  Literal = 0,
+  BeforeOpenTag = 1,
+  OpeningTag = 2,
+  AfterOpenTag = 3,
+  InValueNq = 4,
+  InValueSq = 5,
+  InValueDq = 6,
+  ClosingOpenTag = 7,
+  OpeningSpecial = 8,
+  OpeningDoctype = 9,
+  OpeningNormalComment = 10,
+  InNormalComment = 11,
+  InShortComment = 12,
+  ClosingNormalComment = 13,
+  ClosingTag = 14,
 }
 
 export const enum TokenKind {
-  Literal,
-  OpenTag, // trim leading '<'
-  OpenTagEnd, // trim tailing '>', only could be '/' or ''
-  CloseTag, // trim leading '</' and tailing '>'
-  Whitespace, // the whitespace between attributes
-  AttrValueEq,
-  AttrValueNq,
-  AttrValueSq,
-  AttrValueDq,
+  Literal = 0,
+  OpenTag = 1, // trim leading '<'
+  OpenTagEnd = 2, // trim tailing '>', only could be '/' or ''
+  CloseTag = 3, // trim leading '</' and tailing '>'
+  Whitespace = 4, // the whitespace between attributes
+  AttrValueEq = 5,
+  AttrValueNq = 6,
+  AttrValueSq = 7,
+  AttrValueDq = 8,
 }
 
 export interface Token {
@@ -51,23 +48,23 @@ let sectionStart: number;
 let index: number;
 let tokens: Token[];
 let char: NumberOr<Chars>;
-// eslint-disable-next-line unicorn/consistent-boolean-name
 let inScript: boolean;
-// eslint-disable-next-line unicorn/consistent-boolean-name
 let inStyle: boolean;
 let offset: number;
 
 // TODO: Use macro to generate code points once bun can run macros in node_modules
 function makeCodePoints(input: string) {
   return {
+    // oxlint-disable-next-line unicorn/prefer-spread
     lower: input
       .toLowerCase()
       .split("")
-      .map((c) => c.charCodeAt(0)),
+      .map((ch) => ch.charCodeAt(0)),
+    // oxlint-disable-next-line unicorn/prefer-spread
     upper: input
       .toUpperCase()
       .split("")
-      .map((c) => c.charCodeAt(0)),
+      .map((ch) => ch.charCodeAt(0)),
     length: input.length,
   };
 }
@@ -124,6 +121,7 @@ function init(input: string) {
   offset = 0;
 }
 
+// oxlint-disable-next-line complexity
 export function tokenize(input: string): Token[] {
   init(input);
   while (index < bufSize) {
@@ -240,7 +238,6 @@ function emitToken(kind: TokenKind, newState = state, end = index) {
     }
   }
   if (kind === TokenKind.CloseTag) {
-    // eslint-disable-next-line no-multi-assign
     inScript = inStyle = false;
   }
   if (!((kind === TokenKind.Literal || kind === TokenKind.Whitespace) && end === sectionStart)) {
@@ -410,6 +407,7 @@ function parseOpeningDoctype() {
     emitToken(TokenKind.OpenTag, undefined, sectionStart + 1);
     emitToken(TokenKind.Literal);
     emitToken(TokenKind.OpenTagEnd);
+    // oxlint-disable-next-line typescript/no-unsafe-enum-comparison
   } else if (doctype.lower[offset] !== char && doctype.upper[offset] !== char) {
     // <!DOCX...
     emitToken(TokenKind.OpenTag, State.InShortComment, sectionStart + 1);
@@ -433,7 +431,6 @@ function parseNormalComment() {
 }
 
 function parseShortComment() {
-  // eslint-disable-next-line unicorn/prefer-early-return
   if (char === Chars.Gt) {
     // <! ... >
     emitToken(TokenKind.Literal);
@@ -467,6 +464,7 @@ function parseClosingTag() {
       sectionStart -= 2;
       emitToken(TokenKind.Literal, State.BeforeOpenTag);
     } else if (offset < style.length) {
+      // oxlint-disable-next-line typescript/no-unsafe-enum-comparison
       if (style.lower[offset] !== char && style.upper[offset] !== char) {
         sectionStart -= 2;
         state = State.Literal;
@@ -482,6 +480,7 @@ function parseClosingTag() {
       sectionStart -= 2;
       emitToken(TokenKind.Literal, State.BeforeOpenTag);
     } else if (offset < script.length) {
+      // oxlint-disable-next-line typescript/no-unsafe-enum-comparison
       if (script.lower[offset] !== char && script.upper[offset] !== char) {
         sectionStart -= 2;
         state = State.Literal;
@@ -500,7 +499,6 @@ function parseClosingTag() {
 
 function unexpected() {
   throw new SyntaxError(
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     `Unexpected token "${buffer.charAt(index)}" at ${index} when parse ${state}`,
   );
 }

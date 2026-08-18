@@ -10,23 +10,22 @@ interface Case {
   tokens: Token[];
 }
 
-// biome-ignore lint/suspicious/noExportsInTest: used in other tests
+// oxlint-disable-next-line import/no-mutable-exports
 export let tokenIndex = 0;
 
-// biome-ignore lint/suspicious/noExportsInTest: used in other tests
 export function token(
   value: string,
   type: TokenKind = TokenKind.Literal,
   start = tokenIndex,
 ): Token {
-  const v = {
+  const node = {
     start,
     end: start + value.length,
     value,
     type,
   };
-  tokenIndex = v.end;
-  return v;
+  tokenIndex = node.end;
+  return node;
 }
 
 const cases: Case[] = [
@@ -243,10 +242,7 @@ const cases: Case[] = [
 ];
 
 describe("simple cases", () => {
-  for (const testcase of cases) {
-    it(`case "${testcase.name}"`, () => {
-      const tokens = tokenize(testcase.input);
-      expect(tokens).toStrictEqual(testcase.tokens);
-    });
-  }
+  it.each(cases)(`case "$name"`, ({ input, tokens }) => {
+    expect(tokenize(input)).toStrictEqual(tokens);
+  });
 });

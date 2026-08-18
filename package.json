@@ -3,17 +3,17 @@
   "version": "0.0.13",
   "description": "An efficient, compact HTML5 parser with blistering speed.",
   "bugs": "https://github.com/maxmilton/html-parser/issues",
-  "repository": "github:maxmilton/html-parser",
   "license": "MIT",
   "author": "Max Milton <max@2okki.com>",
-  "sideEffects": false,
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "repository": "github:maxmilton/html-parser",
   "files": [
     "dist",
     "src"
   ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "bun build.ts",
     "lint": "bun lint:fmt && bun lint:js && bun lint:ts",

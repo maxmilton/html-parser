@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/no-break-in-nested-loop */
-
 import { noNestedTags, selfCloseTags } from "./config.ts";
 import { type Token, TokenKind, tokenize } from "./tokenize.ts";
 import {
@@ -19,9 +17,10 @@ interface Context {
 }
 
 export interface ParseOptions {
-  // create tag's attributes map
-  // if true, will set Tag.attributeMap property
-  // as a `Record<string, Attribute>`
+  /**
+   * Create tag's attributes map. If true, will set Tag.attributeMap property
+   * as a `Record<string, Attribute>`.
+   */
   setAttributeMap: boolean;
 }
 
@@ -56,20 +55,20 @@ function init(input?: string, options?: ParseOptions) {
   parseOptions = options;
 }
 
-function pushNode(_node: Tag | Text) {
+function pushNode(node_: Tag | Text) {
   if (!tagChain) {
-    nodes.push(_node);
+    nodes.push(node_);
   } else if (
-    _node.type === SyntaxKind.Tag &&
-    _node.name === tagChain.tag.name &&
-    // noNestedTags[_node.name]
-    noNestedTags.has(_node.name)
+    node_.type === SyntaxKind.Tag &&
+    node_.name === tagChain.tag.name &&
+    // noNestedTags[node_.name]
+    noNestedTags.has(node_.name)
   ) {
     tagChain = tagChain.parent;
-    pushNode(_node);
+    pushNode(node_);
   } else if (tagChain.tag.body) {
-    tagChain.tag.end = _node.end;
-    tagChain.tag.body.push(_node);
+    tagChain.tag.end = node_.end;
+    tagChain.tag.body.push(node_);
   }
 }
 
@@ -123,18 +122,15 @@ function createAttributeValue(): AttributeValue {
   };
 }
 
-function appendLiteral(_node: Text | AttributeValue = node!) {
-  // eslint-disable-next-line no-param-reassign
-  _node.value += token.value;
-  // eslint-disable-next-line no-param-reassign
-  _node.end = token.end;
+function appendLiteral(node_: Text | AttributeValue = node!) {
+  node_.value += token.value;
+  node_.end = token.end;
 }
 
 function unexpected() {
   lines ??= getLineRanges(buffer);
   const [line, column] = getPosition(lines, token.start);
   throw new Error(
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     `Unexpected token "${token.value}(${token.type})" at [${line},${column}]${
       tagChain ? ` when parsing tag: ${JSON.stringify(tagChain.tag.name)}.` : ""
     }`,
@@ -142,29 +138,27 @@ function unexpected() {
 }
 
 function buildAttributeMap(tag: Tag) {
-  // eslint-disable-next-line no-param-reassign
   tag.attributeMap = {};
 
   for (const attr of tag.attributes) {
-    // eslint-disable-next-line no-param-reassign
     tag.attributeMap[attr.name.value] = attr;
   }
 }
 
 const enum OpenTagState {
-  BeforeAttr,
-  InName,
-  AfterName,
-  AfterEqual,
-  InValue,
+  BeforeAttr = 0,
+  InName = 1,
+  AfterName = 2,
+  AfterEqual = 3,
+  InValue = 4,
 }
 
+// oxlint-disable-next-line complexity
 function parseOpenTag() {
   let state = OpenTagState.BeforeAttr;
 
   const tag = createTag();
   pushNode(tag);
-  // eslint-disable-next-line unicorn/prefer-includes-over-repeated-comparisons
   if (tag.name === "" || tag.name === "!" || tag.name === "!--") {
     tag.open.value = `<${tag.open.value}`;
 
@@ -200,7 +194,6 @@ function parseOpenTag() {
     token = tokens[index];
 
     if (token.type === TokenKind.OpenTagEnd) {
-      // eslint-disable-next-line no-multi-assign
       tag.end = tag.open.end = token.end + 1;
       tag.open.value = buffer.slice(tag.open.start, tag.open.end);
 
@@ -311,18 +304,14 @@ export function parse(input: string, options?: ParseOptions): Node[] {
           pushNode(node);
         }
         break;
-      // eslint-disable-next-line unicorn/switch-case-braces
-      case TokenKind.OpenTag: {
+      case TokenKind.OpenTag:
         node = undefined;
         parseOpenTag();
         break;
-      }
-      // eslint-disable-next-line unicorn/switch-case-braces
-      case TokenKind.CloseTag: {
+      case TokenKind.CloseTag:
         node = undefined;
         parseCloseTag();
         break;
-      }
       default:
         unexpected();
         break;

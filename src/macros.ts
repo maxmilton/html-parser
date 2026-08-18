@@ -4,14 +4,16 @@ export function makeCodePoints(input: string): {
   length: number;
 } {
   return {
+    // oxlint-disable-next-line unicorn/prefer-spread
     lower: input
       .toLowerCase()
       .split("")
-      .map((c) => c.charCodeAt(0)),
+      .map((ch) => ch.charCodeAt(0)),
+    // oxlint-disable-next-line unicorn/prefer-spread
     upper: input
       .toUpperCase()
       .split("")
-      .map((c) => c.charCodeAt(0)),
+      .map((ch) => ch.charCodeAt(0)),
     length: input.length,
   };
 }

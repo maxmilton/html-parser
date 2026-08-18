@@ -24,7 +24,7 @@ TODO: Write me...
 **TIP:** If using `bun` or `esbuild` as your bundler, import from `src` directly to get optimal output code (due to TypeScript `const enum` inlining).
 
 ```ts
-import { parse, walk } from '@maxmilton/html-parser/src';
+import { parse, walk } from "@maxmilton/html-parser/src";
 ```
 
 TODO: Write me...

@@ -1,7 +1,7 @@
-/* eslint-disable no-return-assign */
+// oxlint-disable unicorn/max-nested-calls
 
-// TODO: This is from the original html5parser tests, converted to bun test...
-// but it could do with some improvements.
+// TODO: This is from the original html5parser tests, converted to bun test but
+// could do with some improvements.
 
 import { describe, expect, it } from "bun:test";
 import { parse } from "../src/parse.ts";
@@ -14,9 +14,9 @@ import {
   type Text,
 } from "../src/types.ts";
 
+// oxlint-disable-next-line vitest/require-hook
 let index = 0;
 
-// biome-ignore lint/suspicious/noExportsInTest: used in other tests
 export function text(input: string, start = index): Text {
   return {
     type: SyntaxKind.Text,
@@ -26,7 +26,6 @@ export function text(input: string, start = index): Text {
   };
 }
 
-// biome-ignore lint/suspicious/noExportsInTest: used in other tests
 export function tag(
   input: string,
   name: string,
@@ -348,11 +347,9 @@ const scenes: {
 ];
 
 describe("parse cases", () => {
-  for (const scene of scenes) {
-    it(`case ${JSON.stringify(scene.name)}`, () => {
-      expect(parse(scene.input)).toStrictEqual(scene.nodes);
-    });
-  }
+  it.each(scenes)("case $name", ({ input, nodes }) => {
+    expect(parse(input)).toStrictEqual(nodes);
+  });
 });
 
 describe("parse options", () => {

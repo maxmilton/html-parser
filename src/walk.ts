@@ -1,8 +1,8 @@
 import { type Node, SyntaxKind } from "./types.ts";
 
 export interface WalkOptions {
-  enter?(node: Node, parent: Node | undefined, index: number): void;
-  leave?(node: Node, parent: Node | undefined, index: number): void;
+  enter?: (node: Node, parent: Node | undefined, index: number) => void;
+  leave?: (node: Node, parent: Node | undefined, index: number) => void;
 }
 
 function visit(node: Node, parent: Node | undefined, index: number, options: WalkOptions) {

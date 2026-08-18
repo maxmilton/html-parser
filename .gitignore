@@ -2,7 +2,6 @@
 *-lock.yaml
 *.lock
 !/bun.lock
-/.claude/
 /coverage/
 /dist/
 /node_modules/

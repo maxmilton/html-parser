@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { createBundle } from "dts-buddy";
 
 console.time("prebuild");

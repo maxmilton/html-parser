@@ -1,8 +1,9 @@
+// oxlint-disable-next-line typescript/ban-types
 export type NumberOr<T extends number> = T | (number & {});
 
 export const enum SyntaxKind {
-  Text,
-  Tag,
+  Text = 0,
+  Tag = 1,
 }
 
 export interface BaseNode {
