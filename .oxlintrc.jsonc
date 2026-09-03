@@ -1,6 +1,10 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "extends": ["./node_modules/@maxmilton/oxlint-config/recommended.json"],
+  "jsPlugins": ["oxclippy"],
+  "extends": [
+    "./node_modules/oxclippy/presets/all.json",
+    "./node_modules/@maxmilton/oxlint-config/recommended.json",
+  ],
   "options": {
     "maxWarnings": 50,
     "reportUnusedDisableDirectives": "error",
@@ -19,13 +23,9 @@
   // https://github.com/oxc-project/javascript-globals/blob/main/src/lib.rs
   "env": {
     "builtin": true,
-    "es2025": true,
-    "es2026": true,
-    "node": true,
+    "es2026": true, // TODO: es2027 once in oxc.
+    "bun": true,
     "commonjs": false,
-  },
-  "globals": {
-    "Bun": "readonly",
   },
   "rules": {
     "eslint/no-multi-assign": "off", // used carefully
@@ -36,11 +36,11 @@
     "unicorn/no-nested-ternary": "off",
     "unicorn/prefer-code-point": "off", // faster
 
+    // TODO: Remove when we can fix all the issues
+    "typescript/no-unsafe-type-assertion": "warn",
+
     // TODO: These are buggy. Remove after future oxlint updates.
     "typescript/prefer-readonly-parameter-types": "off",
-
-    // TODO: Remove these after next @maxmilton/oxlint-config release.
-    "eslint/one-var": "off",
   },
   "overrides": [
     {
