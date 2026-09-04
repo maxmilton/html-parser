@@ -1,10 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "jsPlugins": ["oxclippy"],
-  "extends": [
-    "./node_modules/oxclippy/presets/all.json",
-    "./node_modules/@maxmilton/oxlint-config/recommended.json",
-  ],
+  "extends": ["./node_modules/@maxmilton/oxlint-config/recommended.json"],
   "options": {
     "maxWarnings": 50,
     "reportUnusedDisableDirectives": "error",
