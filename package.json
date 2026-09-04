@@ -1,6 +1,6 @@
 {
   "name": "@maxmilton/html-parser",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "An efficient, compact HTML5 parser with blistering speed.",
   "bugs": "https://github.com/maxmilton/html-parser/issues",
   "license": "MIT",
