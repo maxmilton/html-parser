@@ -1,4 +1,4 @@
-export { type ParseOptions, parse } from "./parse.ts";
+export { parse } from "./parse.ts";
 export { type Token, TokenKind, tokenize } from "./tokenize.ts";
 export {
   type Attribute,

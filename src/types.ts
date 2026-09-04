@@ -35,10 +35,6 @@ export interface Tag extends BaseNode {
   // original case tag name, Div
   rawName: string;
   attributes: Attribute[];
-  // the attribute map, if `options.setAttributeMap` is `true`
-  // this will be a Record, key is the attribute name literal,
-  // value is the attribute self.
-  attributeMap: Record<string, Attribute> | undefined;
   body:
     | (Tag | Text)[] // with close tag
     | undefined // self closed

@@ -9,19 +9,10 @@ import {
   type Text,
 } from "./types.ts";
 import { getLineRanges, getPosition } from "./utils.ts";
-import { walk } from "./walk.ts";
 
 interface Context {
   parent: Context | undefined;
   tag: Tag;
-}
-
-export interface ParseOptions {
-  /**
-   * Create tag's attributes map. If true, will set Tag.attributeMap property
-   * as a `Record<string, Attribute>`.
-   */
-  setAttributeMap: boolean;
 }
 
 let index: number;
@@ -33,9 +24,8 @@ let token: Token;
 let node: Text | undefined;
 let buffer: string;
 let lines: number[] | undefined;
-let parseOptions: ParseOptions | undefined;
 
-function init(input?: string, options?: ParseOptions) {
+function init(input?: string) {
   if (input === undefined) {
     count = 0;
     tokens.length = 0;
@@ -52,7 +42,6 @@ function init(input?: string, options?: ParseOptions) {
   token = undefined;
   node = undefined;
   lines = undefined;
-  parseOptions = options;
 }
 
 function pushNode(node_: Tag | Text) {
@@ -61,7 +50,6 @@ function pushNode(node_: Tag | Text) {
   } else if (
     node_.type === SyntaxKind.Tag &&
     node_.name === tagChain.tag.name &&
-    // noNestedTags[node_.name]
     noNestedTags.has(node_.name)
   ) {
     tagChain = tagChain.parent;
@@ -90,7 +78,6 @@ function createTag(): Tag {
     name: token.value,
     rawName: buffer.slice(token.start, token.end),
     attributes: [],
-    attributeMap: undefined,
     body: null,
     close: null,
   };
@@ -135,14 +122,6 @@ function unexpected() {
       tagChain ? ` when parsing tag: ${JSON.stringify(tagChain.tag.name)}.` : ""
     }`,
   );
-}
-
-function buildAttributeMap(tag: Tag) {
-  tag.attributeMap = {};
-
-  for (const attr of tag.attributes) {
-    tag.attributeMap[attr.name.value] = attr;
-  }
 }
 
 const enum OpenTagState {
@@ -197,7 +176,6 @@ function parseOpenTag() {
       tag.end = tag.open.end = token.end + 1;
       tag.open.value = buffer.slice(tag.open.start, tag.open.end);
 
-      // if (token.value === '' && !selfCloseTags[tag.name]) {
       if (token.value === "" && !selfCloseTags.has(tag.name)) {
         tag.body = [];
         pushTagChain(tag);
@@ -262,13 +240,6 @@ function parseOpenTag() {
 }
 
 function parseCloseTag() {
-  // let _context = tagChain;
-  // while (true) {
-  //   if (!_context || token.value.trim() === _context.tag.name) {
-  //     break;
-  //   }
-  //   _context = _context.parent;
-  // }
   let context = tagChain;
   while (context && token.value.trim() !== context.tag.name) {
     context = context.parent;
@@ -286,11 +257,8 @@ function parseCloseTag() {
   tagChain = context;
 }
 
-export function parse(input: string, options?: ParseOptions): Node[] {
-  init(input, {
-    setAttributeMap: false,
-    ...options,
-  });
+export function parse(input: string): Node[] {
+  init(input);
 
   while (index < count) {
     token = tokens[index];
@@ -320,16 +288,6 @@ export function parse(input: string, options?: ParseOptions): Node[] {
   }
 
   const ast = nodes;
-
-  if (parseOptions?.setAttributeMap) {
-    walk(ast, {
-      enter(node2) {
-        if (node2.type === SyntaxKind.Tag) {
-          buildAttributeMap(node2);
-        }
-      },
-    });
-  }
 
   init();
 

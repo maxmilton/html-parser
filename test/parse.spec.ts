@@ -44,7 +44,6 @@ export function tag(
     name,
     rawName,
     attributes,
-    attributeMap: undefined,
     body,
     close,
   };
@@ -349,31 +348,5 @@ const scenes: {
 describe("parse cases", () => {
   it.each(scenes)("case $name", ({ input, nodes }) => {
     expect(parse(input)).toStrictEqual(nodes);
-  });
-});
-
-describe("parse options", () => {
-  it("should setAttributeMap", () => {
-    const ast = parse('<div same="1" diff="2" same="3" />', {
-      setAttributeMap: true,
-    });
-    const div = tag(
-      '<div same="1" diff="2" same="3" />',
-      "div",
-      text('<div same="1" diff="2" same="3" />', 0),
-      [
-        attr(text("same", 5), value("1", '"', index + 1)),
-        attr(text("diff", index + 1), value("2", '"', index + 1)),
-        attr(text("same", index + 1), value("3", '"', index + 1)),
-      ],
-      undefined,
-      null,
-      0,
-    );
-    div.attributeMap = {
-      same: div.attributes[2],
-      diff: div.attributes[1],
-    };
-    expect(ast).toEqual([div]);
   });
 });
