@@ -17,9 +17,10 @@ function setAttributeMap(
 ): void {
   if (node.type !== SyntaxKind.Tag) return;
 
-  const attributeMap: Record<string, Attribute> = {};
+  // Use a null-prototype object to avoid prototype pollution.
+  const attributeMap: Record<string, Attribute> = Object.create(null);
   for (const attribute of node.attributes) {
-    attributeMap[attribute.name.value] = attribute;
+    attributeMap[attribute.name.value] ??= attribute;
   }
   attributeMaps.set(node, attributeMap);
 }
@@ -70,7 +71,7 @@ describe("walk", () => {
     });
 
     expect(attributeMaps.get(ast[0])).toMatchObject({
-      same: { name: { value: "same" }, value: { value: "3" } },
+      same: { name: { value: "same" }, value: { value: "1" } }, // first occurrence wins
       diff: { name: { value: "diff" }, value: { value: "2" } },
     });
   });
