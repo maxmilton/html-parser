@@ -2,7 +2,7 @@
 
 import { describe, expect, it } from "bun:test";
 import { parse } from "../src/parse.ts";
-import { TokenKind, tokenize } from "../src/tokenize.ts";
+import { tokenize, TokenKind } from "../src/tokenize.ts";
 import { tag, text } from "./parse.spec.ts";
 import { token, tokenIndex } from "./tokenize.spec.ts";
 

@@ -26,6 +26,7 @@ export function text(input: string, start = index): Text {
   };
 }
 
+// oxlint-disable-next-line oxclippy/too-many-arguments
 export function tag(
   input: string,
   name: string,

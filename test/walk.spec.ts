@@ -18,7 +18,7 @@ function setAttributeMap(
   if (node.type !== SyntaxKind.Tag) return;
 
   // Use a null-prototype object to avoid prototype pollution.
-  const attributeMap: Record<string, Attribute> = Object.create(null);
+  const attributeMap: Record<string, Attribute> = Object.create(null); // oxlint-disable-line typescript/no-unsafe-assignment
   for (const attribute of node.attributes) {
     attributeMap[attribute.name.value] ??= attribute;
   }

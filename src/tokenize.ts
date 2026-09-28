@@ -1,4 +1,4 @@
-// oxlint-disable no-use-before-define
+// oxlint-disable no-use-before-define oxclippy/excessive-nesting
 
 // TODO: Use macro to generate code points once bun can run macros in node_modules
 // import { makeCodePoints } from './macros' assert { type: 'macro' };
@@ -97,6 +97,7 @@ const enum Chars {
 }
 
 function isWhitespace() {
+  // oxlint-disable-next-line typescript/switch-exhaustiveness-check
   switch (char) {
     case Chars.S:
     case Chars.N:
@@ -379,6 +380,7 @@ function parseClosingOpenTag() {
 }
 
 function parseOpeningSpecial() {
+  // oxlint-disable-next-line typescript/switch-exhaustiveness-check
   switch (char) {
     case Chars.Cl: // <!-
       state = State.OpeningNormalComment;

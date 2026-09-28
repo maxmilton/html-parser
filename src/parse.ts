@@ -1,5 +1,5 @@
 import { noNestedTags, selfCloseTags } from "./config.ts";
-import { type Token, TokenKind, tokenize } from "./tokenize.ts";
+import { type Token, tokenize, TokenKind } from "./tokenize.ts";
 import {
   type Attribute,
   type AttributeValue,
@@ -48,9 +48,9 @@ function pushNode(node_: Tag | Text) {
   if (!tagChain) {
     nodes.push(node_);
   } else if (
-    node_.type === SyntaxKind.Tag &&
-    node_.name === tagChain.tag.name &&
-    noNestedTags.has(node_.name)
+    node_.type === SyntaxKind.Tag
+    && node_.name === tagChain.tag.name
+    && noNestedTags.has(node_.name)
   ) {
     tagChain = tagChain.parent;
     pushNode(node_);
@@ -109,6 +109,7 @@ function createAttributeValue(): AttributeValue {
   };
 }
 
+// oxlint-disable-next-line typescript/no-non-null-assertion
 function appendLiteral(node_: Text | AttributeValue = node!) {
   node_.value += token.value;
   node_.end = token.end;
@@ -185,6 +186,7 @@ function parseOpenTag() {
       break;
     }
 
+    // oxlint-disable-next-line typescript/switch-exhaustiveness-check
     switch (state) {
       case OpenTagState.BeforeAttr:
         if (token.type !== TokenKind.Whitespace) {
@@ -200,6 +202,7 @@ function parseOpenTag() {
         } else if (token.type === TokenKind.AttrValueEq) {
           state = OpenTagState.AfterEqual;
         } else {
+          // oxlint-disable-next-line typescript/no-non-null-assertion
           appendLiteral(attr!.name);
         }
         break;
@@ -218,10 +221,12 @@ function parseOpenTag() {
 
       case OpenTagState.AfterEqual:
         if (token.type !== TokenKind.Whitespace) {
+          // oxlint-disable-next-line typescript/no-non-null-assertion
           attr!.value = createAttributeValue();
           if (token.type === TokenKind.AttrValueNq) {
             state = OpenTagState.InValue;
           } else {
+            // oxlint-disable-next-line typescript/no-non-null-assertion
             attr!.end = attr!.value.end;
             state = OpenTagState.BeforeAttr;
           }
@@ -230,9 +235,11 @@ function parseOpenTag() {
 
       default:
         if (token.type === TokenKind.Whitespace) {
+          // oxlint-disable-next-line typescript/no-non-null-assertion
           attr!.end = attr!.value!.end;
           state = OpenTagState.BeforeAttr;
         } else {
+          // oxlint-disable-next-line typescript/no-non-null-assertion
           appendLiteral(attr!.value);
         }
     }
@@ -263,6 +270,7 @@ export function parse(input: string): Node[] {
   while (index < count) {
     token = tokens[index];
 
+    // oxlint-disable-next-line typescript/switch-exhaustiveness-check
     switch (token.type) {
       case TokenKind.Literal:
         if (node) {
