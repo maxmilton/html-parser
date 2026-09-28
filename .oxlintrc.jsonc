@@ -2,14 +2,14 @@
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "extends": ["./node_modules/@maxmilton/oxlint-config/recommended.json"],
   "options": {
-    "maxWarnings": 50,
+    "maxWarnings": 20,
     "reportUnusedDisableDirectives": "error",
     "respectEslintDisableDirectives": false,
     "typeAware": true,
   },
   "categories": {
     "correctness": "error",
-    "suspicious": "error",
+    "suspicious": "warn",
     "pedantic": "warn",
     "perf": "error",
     "style": "warn",
@@ -27,13 +27,9 @@
     "eslint/no-multi-assign": "off", // used carefully
     "eslint/no-nested-ternary": "off",
     "eslint/no-plusplus": "off",
-    "typescript/promise-function-async": "off",
-    "typescript/strict-boolean-expressions": "off",
+    "typescript/strict-boolean-expressions": "off", // too pedantic
     "unicorn/no-nested-ternary": "off",
     "unicorn/prefer-code-point": "off", // faster
-
-    // TODO: Remove when we can fix all the issues
-    "typescript/no-unsafe-type-assertion": "warn",
 
     // TODO: These are buggy. Remove after future oxlint updates.
     "typescript/prefer-readonly-parameter-types": "off",
