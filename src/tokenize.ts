@@ -55,12 +55,10 @@ let offset: number;
 // TODO: Use macro to generate code points once bun can run macros in node_modules
 function makeCodePoints(input: string) {
   return {
-    // oxlint-disable-next-line unicorn/prefer-spread
     lower: input
       .toLowerCase()
       .split("")
       .map((ch) => ch.charCodeAt(0)),
-    // oxlint-disable-next-line unicorn/prefer-spread
     upper: input
       .toUpperCase()
       .split("")
