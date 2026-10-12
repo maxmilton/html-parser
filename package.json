@@ -24,11 +24,11 @@
     "test:ci": "bun test --coverage --randomize --rerun-each=3"
   },
   "devDependencies": {
-    "@maxmilton/oxlint-config": "0.0.20",
+    "@maxmilton/oxlint-config": "0.0.22",
     "@types/bun": "1.4.2",
     "dts-buddy": "0.8.3",
-    "oxfmt": "0.70.0",
-    "oxlint": "1.85.0",
+    "oxfmt": "0.72.0",
+    "oxlint": "1.87.0",
     "oxlint-tsgolint": "7.0.2003",
     "typescript": "6.0.3"
   }
