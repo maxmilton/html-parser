@@ -5,7 +5,7 @@
     "": {
       "name": "@maxmilton/html-parser",
       "devDependencies": {
-        "@maxmilton/oxlint-config": "0.0.22",
+        "@maxmilton/oxlint-config": "0.0.23",
         "@types/bun": "1.4.2",
         "dts-buddy": "0.8.3",
         "oxfmt": "0.72.0",
@@ -26,7 +26,7 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
-    "@maxmilton/oxlint-config": ["@maxmilton/oxlint-config@0.0.22", "", { "peerDependencies": { "oxlint": "^1.86.0" } }, "sha512-E2M6nU0ypGHZgp6VojOEIh8AonnyMwRizmhocbl8MnZMT5eZ01MDs2Jh+4hQow0jXVo3GNR3Hg9NYyviICCYKw=="],
+    "@maxmilton/oxlint-config": ["@maxmilton/oxlint-config@0.0.23", "", { "optionalDependencies": { "oxlint": "*" } }, "sha512-toGah1sSd3k48My/q1eEIE8Q9kiqjPAHs9hmYWWPJwoStsl8AY0eFtcFIb9X/DmlzTAZds8SdmCftB4bTPsyqQ=="],
 
     "@oxfmt/binding-android-arm-eabi": ["@oxfmt/binding-android-arm-eabi@0.72.0", "", { "os": "android", "cpu": "arm" }, "sha512-u4U1uaDOVBuorGNC/07NLm48nECHOiJJka002YGML16Md2DRvf38RGBt01lH60EOGvNlFVmbLoksQedNBoZHKw=="],
 
